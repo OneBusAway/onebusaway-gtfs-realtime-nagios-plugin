@@ -75,6 +75,11 @@ public class GtfsRealtimeNagiosPluginMain {
   private String _source;
 
   public Status run(String[] args) throws ParseException, IOException {
+    if (args.length == 1 && args[0].equals("-h")) {
+      System.out.println("usage: -u url [-c critical_num] [-w warning_num] [-s source]");
+      System.exit(-1);
+    }
+
     Options options = new Options();
     buildOptions(options);
 
