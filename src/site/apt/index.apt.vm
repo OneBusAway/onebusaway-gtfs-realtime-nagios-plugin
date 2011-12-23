@@ -1,0 +1,66 @@
+onebusaway-gtfs-realtime-nagios-plugin
+
+  The <<<onebusaway-gtfs-realtime-nagios-plugin>>> is a {{{http://www.nagios.org/}Nagios}} plugin for monitoring a
+{{{http://code.google.com/transit/realtime/}GTFS-realtime}} feed.  The plugin can be used to periodically check a feed
+and warn when the number of vehicles or trips present in the feed drop below a configurable threshold.  This can be
+used to alert you when a feed isn't returning as many vehicles as you'd expect.
+
+* Downloading the plugin:
+  
+#set( $url = 'http://nexus.onebusaway.org/service/local/artifact/maven/content?r=public&g=org.onebusaway&a=onebusaway-gtfs-realtime-nagios-plugin&v=' + ${currentVersion} )
+
+  * Download the jar: {{{${url}}onebusaway-gtfs-realtime-nagios-plugin.jar}}
+
+* Installation
+
+  Install the <<<onebusaway-gtfs-realtime-nagios-plugin.jar>>> file in your Nagios plugins directory, typically:
+  
++---+
+/usr/lib/nagios/plugins
++---+
+
+  Additionally, add a simple script file at the following path:
+  
++---+
+/usr/lib/nagios/plugins/check_gtfs_realtime
++---+
+
+  The script should have the following content:
+
++---+
+#!/bin/sh
+java -jar /usr/lib/nagios/plugins/onebusaway-gtfs-realtime-nagios-plugin.jar $@
++---+
+
+  Make sure the script is executable.
+
+* Configuration
+
+  To configure an instance of the plugin, you need to add a command definition:
+
++---+
+define command {
+  command_name  check_gtfs_realtime
+  command_line  $USER1$/check_gtfs_realtime -u $ARG1$ -w 50 -c 10
+}
++---+
+
+  The plugin accepts the following command line options:
+
+  * <<<-u url>>> - url path to a GTFS-realtime feed (required)
+  
+  * <<<-w count>>> - specify the warning threshold.  When the number of entries in a feed drop below this value, a
+  warning notification will be generated.
+  
+  * <<<-c count>>> - specify the critical threshold.  When the number of entries in a feed drop below this value, a
+  critical notification will be generated.
+  
+  * <<<-s source>>> - optional filter to include only records with a FeedEntity.source matching the specified value.
+  This is a OneBusAway-specific extension.
+  
+  []
+  
+  You can configure the plugin using the Nagios command structure as you see fit.  From there, configure the plugin
+  like you would any other.
+
+  
