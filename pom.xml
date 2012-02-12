@@ -4,12 +4,15 @@
   <parent>
     <artifactId>onebusaway</artifactId>
     <groupId>org.onebusaway</groupId>
-    <version>1.1.2</version>
+    <version>1.1.6</version>
   </parent>
   <artifactId>onebusaway-gtfs-realtime-nagios-plugin</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  
   <name>onebusaway-gtfs-realtime-nagios-plugin</name>
-
+  <description>Nagios plugin to monitor a GTFS-realtime data source.</description>
+  <url>https://github.com/OneBusAway/onebusaway-gtfs-realtime-nagios-plugin/wiki/</url>
+  
   <properties>
     <gtfs_realtime_api_version>1.0.2-SNAPSHOT</gtfs_realtime_api_version>
   </properties>
@@ -22,10 +25,15 @@
   </repositories>
 
   <scm>
-    <connection>scm:svn:http://onebusaway.googlecode.com/svn/gtfs-realtime/onebusaway-gtfs-realtime-nagios-plugin/trunk</connection>
-    <developerConnection>scm:svn:https://onebusaway.googlecode.com/svn/gtfs-realtime/onebusaway-gtfs-realtime-nagios-plugin/trunk</developerConnection>
-    <url>http://code.google.com/p/onebusaway/source/browse/#svn/gtfs-realtime/onebusaway-gtfs-realtime-nagios-plugin/trunk</url>
+    <connection>scm:git:http://github.com/OneBusAway/onebusaway-gtfs-realtime-nagios-plugin.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/OneBusAway/onebusaway-gtfs-realtime-nagios-plugin.git</developerConnection>
+    <url>http://github.com/OneBusAway/onebusaway-gtfs-realtime-nagios-plugin</url>
   </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/OneBusAway/onebusaway-gtfs-realtime-nagios-plugin/issues</url>
+  </issueManagement>
 
   <distributionManagement>
     <!-- Even though we specify this in the parent pom, we need to specify it here to have full control over the url -->
